@@ -96,7 +96,8 @@ void loop()
   Serial.print((int) data.Throttle);
   Serial.print(" ");
   showbits(data.Hat,4);
-  Serial.println(" IsHatWest " + (int)(data.Hat & HatW == HatW));
+  Serial.print(" IsHatWest ");
+  Serial.println((int)((data.Hat & HatW) == HatW)));
 #endif
   delay(20);
   
