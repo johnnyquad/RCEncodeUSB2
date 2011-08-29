@@ -97,7 +97,8 @@ struct _joystick_data
 	uint16_t Roll:10;
 	uint16_t Pitch:10;
 	uint8_t Hat:4;
-	uint8_t Yaw:8;
+	uint8_t Yaw:7;
+        uint8_t Unused1:1;
 	uint8_t Btn_1:1;
 	uint8_t Btn_2:1;
 	uint8_t Btn_3:1;
@@ -111,8 +112,8 @@ struct _joystick_data
 	uint8_t Btn_10:1;
 	uint8_t Btn_11:1;
 	uint8_t Btn_12:1;
-	uint8_t Unused1:4;
-	uint8_t Unused2:8;
+	uint8_t Unused2:4;
+	uint8_t Unused3:8;
 };
 typedef struct _joystick_data joystick_data;
 /////////////////////////////////////////////////////////////////////
