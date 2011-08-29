@@ -118,19 +118,6 @@ struct _joystick_data
 
 typedef struct _joystick_data joystick_data;
 
-enum HatPositions
-{
-  HatCentre   = 0xF,
-  HatNE       = 0x1,
-  HatE        = 0x2,
-  HatSE       = 0x3,
-  HatS        = 0x4,
-  HatSW       = 0x5,
-  HatW        = 0x6,
-  HatNW       = 0x7,
-  HatN        = 0x0
-};
-
 
 
 /////////////////////////////////////////////////////////////////////
@@ -184,7 +171,18 @@ enum HatPositions
 /// The current hat position is one of USBJOYSTICK_HAT_POS_*.
 class USBJoystick
 {
-
+enum HatPositions
+{
+  HatCentre   = 0xF,
+  HatNE       = 0x1,
+  HatE        = 0x2,
+  HatSE       = 0x3,
+  HatS        = 0x4,
+  HatSW       = 0x5,
+  HatW        = 0x6,
+  HatNW       = 0x7,
+  HatN        = 0x0
+};
 #define USBJOYSTICK_NUM_STICKS          4
 #define USBJOYSTICK_NUM_BUTTONS        18 //13
 #define USBJOYSTICK_NUM_HATS            1
