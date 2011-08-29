@@ -76,6 +76,8 @@ void loop()
   Serial.print(" ");
   Serial.print((int) data.Pitch);
   Serial.print(" ");
+  Serial.print((int) data.Yaw);
+  Serial.print(" ");  
   Serial.println((int) data.Throttle);
 #endif
   delay(20);
