@@ -71,7 +71,7 @@ void loop()
 
   joy.run();
   joystick_data data = joy.getJoyStickData();
-#if 0  
+#if 1  
   Serial.print((int) data.Roll);
   Serial.print(" ");
   Serial.print((int) data.Pitch);
