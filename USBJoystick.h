@@ -97,8 +97,8 @@ struct _joystick_data
 	uint16_t Roll:10;
 	uint16_t Pitch:10;
 	uint8_t Hat:4;
-	uint8_t Yaw:7;
-        uint8_t Unused1:1;
+	uint8_t Yaw:8;
+//        uint8_t Unused1:1;
 	uint8_t Btn_1:1;
 	uint8_t Btn_2:1;
 	uint8_t Btn_3:1;
