@@ -120,15 +120,15 @@ typedef struct _joystick_data joystick_data;
 
 enum HatPositions
 {
-  HatCentre = 0xF;
-  HatNE = 0x1;
-  HatE = 0x2;
-  HatSE = 0x3;
-  HatS = 0x4;
-  HatSW = 0x5;
-  HatW = 0x6;
-  HatNW = 0x7;
-  HatN = 0x0;
+  HatCentre   = 0xF,
+  HatNE       = 0x1,
+  HatE        = 0x2,
+  HatSE       = 0x3,
+  HatS        = 0x4,
+  HatSW       = 0x5,
+  HatW        = 0x6,
+  HatNW       = 0x7,
+  HatN        = 0x0
 };
 
 
