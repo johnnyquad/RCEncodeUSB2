@@ -116,22 +116,9 @@ void USBJoystick::run()
 	next_t = current_t + USBJOYSTICK_POLL_INTERVAL;
     }
 }
-extern "C" {
-void showbits(char a)
-{
-  int i  , k , mask;
 
-  for( i =7 ; i >= 0 ; i--)
-  {
-     mask = 1 << i;
-     k = a & mask;
-     if( k == 0)
-        Serial.print("0");
-     else
-        Serial.print("1");
-  }
-}
-}
+
+
 void USBJoystick::poll()
 {
 	

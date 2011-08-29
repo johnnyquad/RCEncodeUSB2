@@ -55,6 +55,21 @@ void hatValueDidChangeCallback(uint8_t hat, uint8_t value)
     Serial.println("");*/
 }
 
+void showbits(char a)
+{
+  int i  , k , mask;
+
+  for( i =7 ; i >= 0 ; i--)
+  {
+     mask = 1 << i;
+     k = a & mask;
+     if( k == 0)
+        Serial.print("0");
+     else
+        Serial.print("1");
+  }
+}
+
 void setup()
 {
   Serial.begin(115200);
@@ -78,7 +93,11 @@ void loop()
   Serial.print(" ");
   Serial.print((int) data.Yaw);
   Serial.print(" ");  
-  Serial.println((int) data.Throttle);
+  Serial.print((int) data.Throttle);
+  Serial.print(" ");  
+  showbits(data.Hat);
+  Serial.println(" ");  
+  
 #endif
   delay(20);
   
