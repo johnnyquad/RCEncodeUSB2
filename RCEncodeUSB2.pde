@@ -71,11 +71,13 @@ void loop()
 
   joy.run();
   joystick_data data = joy.getJoyStickData();
+#if 0  
   Serial.print((int) data.Roll);
   Serial.print(" ");
   Serial.print((int) data.Pitch);
   Serial.print(" ");
   Serial.println((int) data.Throttle);
+#endif
   delay(20);
   
 }
