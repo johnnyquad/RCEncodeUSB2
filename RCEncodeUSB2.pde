@@ -95,7 +95,7 @@ void loop()
   Serial.print(" ");  
   Serial.print((int) data.Throttle);
   Serial.print(" ");
-  showbits(data.hat,4);
+  showbits(data.Hat,4);
   Serial.println("");
 #endif
   delay(20);
