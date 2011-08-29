@@ -96,7 +96,7 @@ void loop()
   Serial.print((int) data.Throttle);
   Serial.print(" ");
   showbits(data.Hat,4);
-  Serial.println(" IsHatWest " + (int)(data.Hat & USBJoystick::HatW == USBJoystick::HatW));
+  Serial.println(" IsHatWest " + (int)(data.Hat & HatW == HatW));
 #endif
   delay(20);
   
