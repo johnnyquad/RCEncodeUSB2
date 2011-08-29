@@ -14,7 +14,7 @@
 
 #include <Usb.h>
 
-#include <USBJoystick.h>
+#include "USBJoystick.h"
 
 // Our singleton joystick
 USBJoystick joy;
