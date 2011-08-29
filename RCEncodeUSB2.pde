@@ -99,7 +99,7 @@ void loop()
   Serial.print(" IsHatWest ");
   Serial.print( (int)data.Hat == HatW);
   Serial.print(" IsBtn_5 ");
-  Serial.print( (int)data.Btn_5);
+  Serial.printlm( (int)data.Btn_5);
 #endif
   delay(20);
   
