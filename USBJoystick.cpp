@@ -137,13 +137,13 @@ void USBJoystick::poll()
 	
 	 unsigned long currentTime = micros();
 	  
-    if (Usb.inTransfer(KBD_ADDR, KBD_EP, 8, (char*)&data/*buf*/, USB_NAK_NOWAIT) == 0)
+    if (Usb.inTransfer(KBD_ADDR, KBD_EP, 8, (char*)/*&data*/buf, USB_NAK_NOWAIT) == 0)
     {
         uint8_t i;
-#if 0
+#if 1
 	//uint8_t *tmp_buf = (uint8_t*)&data;
 	// Print raw input
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < 8; i++)
 	{
             showbits(buf[i]);
 	    //Serial.print(buf[i], BIN);
