@@ -59,7 +59,7 @@ void showbits(char a)
 {
   int i  , k , mask;
 
-  for( i =7 ; i >= 0 ; i--)
+  for( i =3 ; i >= 0 ; i--)
   {
      mask = 1 << i;
      k = a & mask;
