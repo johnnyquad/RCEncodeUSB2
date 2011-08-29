@@ -55,7 +55,7 @@ void hatValueDidChangeCallback(uint8_t hat, uint8_t value)
     Serial.println("");*/
 }
 
-void showbits(char a,unit8_t l)
+void showbits(char a,uint8_t l)
 {
   int i  , k , mask;
 
