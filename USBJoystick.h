@@ -118,7 +118,18 @@ struct _joystick_data
 
 typedef struct _joystick_data joystick_data;
 
-
+enum HatPositions
+{
+  HatCentre   = 0xF,
+  HatNE       = 0x1,
+  HatE        = 0x2,
+  HatSE       = 0x3,
+  HatS        = 0x4,
+  HatSW       = 0x5,
+  HatW        = 0x6,
+  HatNW       = 0x7,
+  HatN        = 0x0
+};
 
 /////////////////////////////////////////////////////////////////////
 /// \class USBJoystick USBJoystick.h <USBJoystick.h>
@@ -214,18 +225,6 @@ class USBJoystick
 #define USBJOYSTICK_POLL_INTERVAL     10
 
 public:
-enum HatPositions
-{
-  HatCentre   = 0xF,
-  HatNE       = 0x1,
-  HatE        = 0x2,
-  HatSE       = 0x3,
-  HatS        = 0x4,
-  HatSW       = 0x5,
-  HatW        = 0x6,
-  HatNW       = 0x7,
-  HatN        = 0x0
-};
     /// Constructor. 
     /// Stick positions are initialised to 0x80, buttons to false and hat switches to idle
     USBJoystick();
