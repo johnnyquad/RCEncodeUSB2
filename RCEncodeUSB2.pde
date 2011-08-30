@@ -150,7 +150,9 @@ void loop()
   int trim4 = analogRead(7);
   trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
   
-// Channel order ROLL(0) PITCH(1) THROTHLE(2) YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
+// Channel order for TX = ROLL(0) PITCH(1) THROTHLE(2) YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
+
+// Channel order from USB Joystick = ROLL(10bits) PITCH(10bits) YAW(8bits) THROTHLE(8bits)  Hat(4bits) Buttons(13bits)
   
   for(int i=0; i < NBR_OF_CHANNELS-4; i++)
   {
