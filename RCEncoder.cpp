@@ -87,11 +87,7 @@ void encoderWrite(byte channel, int microseconds) {
     }
     ChannelStorePulseWidth(channel, microseconds);
   
-  if (channel == 6)
-  {
-    Serial.println(microseconds);
-  }
-  
+   
 }
 
 // start the encoder with output on the given pin
