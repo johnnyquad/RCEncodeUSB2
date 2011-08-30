@@ -103,14 +103,14 @@ void showbits(char a,uint8_t l)
 
 void checkPulseWidth(int pulseWidth)
       {
-        if (pulseWidth > MAX_PULSE_WIDTH)
-        {
-          pulseWidth = MAX_PULSE_WIDTH;
-        }
-      if (pulseWidth < MIN_PULSE_WIDTH)
-        {
-          pulseWidth = MIN_PULSE_WIDTH;
-        }
+        if (pulseWidth > MAX_CHANNEL_PULSE)
+          {
+            pulseWidth = MAX_CHANNEL_PULSE;
+          }
+        if (pulseWidth < MIN_CHANNEL_PULSE)
+          {
+            pulseWidth = MIN_CHANNEL_PULSE;
+          }
         return (pulseWidth);
       } 
 
