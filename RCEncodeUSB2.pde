@@ -12,13 +12,38 @@
 //USBHoshShield library v1 from and USBJoystick from http://www.open.com.au/mikem/arduino/USBJoystick/
 //must be installed
 
+// Sends a pulse stream on pin 2 proportional to the values of pots connected to the analog pins
+//MODDED JDH
+
+// Channel order ROLL PITCH THROTHLE YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
+
 #include <Usb.h>
 
 #include "USBJoystick.h"
+#include <LiquidCrystal.h>
+#include "RCEncoder.h"
 
 // Our singleton joystick
 USBJoystick joy;
 
+// LiquidCrystal(rs, enable, d4, d5, d6, d7)
+LiquidCrystal lcd(9, 8, 7, 6, 5, 4);//lcd(12, 11, 7, 6, 5, 4);
+
+#define OUTPUT_PIN 2
+#define TONE_PIN 3
+#define TRIM_MIN -60
+#define TRIM_MAX 60
+#define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
+
+bool StateCH5;
+bool StateCH6;
+bool throttleLock;
+bool beepOnce;
+unsigned long currentTime; //in uS
+unsigned long lastTime;
+unsigned long loopTime;
+unsigned long throttleTime;
+int currentThrottle;
 
 
 // Here we define some callbacks thgat will be called when a stick, button
@@ -72,6 +97,34 @@ void showbits(char a,uint8_t l)
 
 void setup()
 {
+  lcd.begin(20, 4);
+  encoderBegin(OUTPUT_PIN);
+  Serial.begin(115200);
+  pinMode(ledTest1,OUTPUT);
+  
+  lcd.setCursor(0,1);
+  lcd.print("  Futaba PPM Buddy  ");
+  lcd.setCursor(0,2);
+  lcd.print("JDH 30/08/2011 V 0.1");
+  lcd.setCursor(0,3);
+  lcd.print("  RCEncoderUSB  ");  
+  delay(300);
+  lcd.clear();
+  
+  for(int i=22; i < 41; i++) //setup 22 ~ 40 as IP
+  {
+    pinMode(i,INPUT);
+    digitalWrite(i, HIGH); //turn on pullup resistors
+  }
+
+  StateCH5 = 0;
+  StateCH6 = 0;
+  throttleLock = 0;
+  beepOnce = 0;
+
+}
+  
+    
   Serial.begin(115200);
 
   // Specify callbacks to call when inputs change
