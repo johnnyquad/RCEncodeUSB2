@@ -343,7 +343,7 @@ void loop()
           Serial.print(" CH6=");
           Serial.print(StateCH6);          
           Serial.print(" CH7=");
-          Serial.println(camTilt + tiltTrim);          
+                    
 
         }
       #endif
@@ -452,6 +452,7 @@ void loop()
         }
       pulseWidth = camTilt + tiltTrim;
       encoderWrite(6, pulseWidth);
+      Serial.println(pulseWidth);
       
       
  
