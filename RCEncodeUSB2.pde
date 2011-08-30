@@ -467,14 +467,14 @@ void loop()
               camTilt = MIN_CHANNEL_PULSE;
             }
         }
-      checkPulseWidth(camTilt);
-//      encoderWrite(6, 1500);
+      //checkPulseWidth(camTilt);
+      encoderWrite(6, camTilt);
       Serial.println(camTilt);
       
       
  
 //Channel 8 stuff 
-//   encoderWrite(7, 1500);
+   encoderWrite(7, 2000);
 //Serial.println(loopTime); 
  
 //  lcd.print(ch6a);
