@@ -47,6 +47,7 @@ unsigned long lastTime;
 unsigned long loopTime;
 unsigned long throttleTime;
 int currentThrottle;
+int tiltTrim;
 
 
 // Here we define some callbacks thgat will be called when a stick, button
@@ -124,7 +125,8 @@ void setup()
   StateCH6 = 0;
   throttleLock = 0;
   beepOnce = 0;
-
+  camTilt = 1500;
+  tiltTrim = 0;
 
   
     
@@ -337,7 +339,10 @@ void loop()
           Serial.print(" CH5=");
           Serial.print(StateCH5);
           Serial.print(" CH6=");
-          Serial.println(StateCH6);          
+          Serial.print(StateCH6);          
+          Serial.print(" CH7=");
+          Serial.println(cameraTilt + tiltTrim);          
+
         }
       #endif
 
@@ -426,7 +431,22 @@ void loop()
   lcd.print(StateCH6);  
   
 
+//Channel 7 stuff camera pan  control
+       if (data.Hat == HatN)
+        {
+          tiltTrim = tiltTrim + 5;
+        }
+        if (data.Hat == HatS)
+        {
+          tiltTrim = tiltTrim - 5;
+        }
+      pulseWidth = cameraTilt + tiltTrim;
+      encoderWrite(6, pulseWidth);
+      
+      
  
+//Channel 8 stuff 
+   encoderWrite(7, 1500);
 //Serial.println(loopTime); 
  
 //  lcd.print(ch6a);
