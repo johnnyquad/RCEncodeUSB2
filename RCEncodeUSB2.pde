@@ -157,18 +157,20 @@ void loop()
   int trim4 = analogRead(7);
   trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
   
-// Channel order for TX = ROLL(0) PITCH(1) THROTHLE(2) YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
+// Channel order for TX = ROLL(0) PITCH(1) THROTHLE(2) YAW(3) CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
 
 // Channel order from USB Joystick = ROLL(10bits) PITCH(10bits) YAW(8bits) THROTHLE(8bits)  Hat(4bits) Buttons(13bits)
   
-  for(int i=0; i < 4; i++)
-  {
-    int value = data.[i];
+//  for(int i=0; i < 4; i++)
+//  {
+    int value = data.Roll;
     int pulseWidth = map(value, 0,1023, 1000, 2000);
-    if (i == 0)
-    {
+
+
+//    if (i == 0)
+//    {
       pulseWidth = pulseWidth + trim1;
-      encoderWrite(i, pulseWidth);
+      encoderWrite(0, pulseWidth);
       lcd.setCursor(0,1);
       lcd.print("    ");
       lcd.setCursor(0,1);
@@ -184,11 +186,13 @@ void loop()
         lcd.setCursor(0,2);
         lcd.print(int(trim1));
       }
-    }
-    if (i == 1)
-    {
+//    }
+//    if (i == 1)
+//    {
+      int value = data.Pitch;
+      int pulseWidth = map(value, 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim2;
-      encoderWrite(i, pulseWidth);
+      encoderWrite(1, pulseWidth);
       lcd.setCursor(5,1);
       lcd.print("    ");
       lcd.setCursor(5,1);
@@ -204,14 +208,17 @@ void loop()
         lcd.setCursor(5,2);
         lcd.print(int(trim2));
       }
-    }
-    if (i == 2)//THROTTLE
-    {
+//    }
+//    if (i == 2)//THROTTLE
+//    {
+      int value = data.Throttle;
+      int pulseWidth = map(value, 0,255, 1000, 2000);
+
       if(throttleLock == 0)// no locking just use stick input
       {
         pulseWidth = pulseWidth ;//+ trim3;
         currentThrottle = pulseWidth;
-        encoderWrite(i, pulseWidth);
+        encoderWrite(2, pulseWidth);
         lcd.setCursor(10,1);
         lcd.print("    ");
         lcd.setCursor(10,1);
@@ -272,14 +279,16 @@ void loop()
           lcd.setCursor(10,2);
           lcd.print(int(trim3));
         }
-      encoderWrite(i,currentThrottle);   
+      encoderWrite(2,currentThrottle);   
       } 
-     } 
+//     } 
     
-    if (i == 3)
-    {
+//    if (i == 3)
+//    {
+      int value = data.Yaw;
+      int pulseWidth = map(value, 0,255, 1000, 2000);
       pulseWidth = pulseWidth + trim4;
-      encoderWrite(i, pulseWidth);
+      encoderWrite(3, pulseWidth);
       lcd.setCursor(15,1);
       lcd.print("    ");
       lcd.setCursor(15,1);
@@ -295,9 +304,9 @@ void loop()
         lcd.setCursor(15,2);
         lcd.print(int(trim4));
       }
-    }
+//    }
     
-  }
+//  }
   
 //Channel 5 stuff
   int ch5a = digitalRead(22);
