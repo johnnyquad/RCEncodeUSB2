@@ -349,6 +349,8 @@ void loop()
         if (data.Btn_1 == 1) // and button 1 is pressed
           {
             StateCH5 = true; //Arm Motors
+            throttleLock = 0; //turn off throttle lock if it was enabled
+            currentThrottle = 1000; // ensure min throttle
           }
     }
  
@@ -407,7 +409,7 @@ void loop()
   lcd.print(StateCH6);  
   
 
-  //int tl0 = digitalRead(27);//TL zero = Throttle lock off
+  //Throttle Lock
   if (data.Btn_11 == 1) //
   {
     if (throttleLock == 1)
@@ -415,7 +417,7 @@ void loop()
       throttleLock = 0;
     }
   }  
-  //int tl1 = digitalRead(28);//TL one = Throttle lock on
+  
   if (data.Btn_12 == 1) //
   {
     if (throttleLock == 0)
