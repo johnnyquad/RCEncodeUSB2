@@ -220,6 +220,7 @@ void loop()
 //Pitch
       pulseWidth = map((1023-data.Pitch), 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim2;
+      checkPulseWidth(pulseWidth);
       encoderWrite(1, pulseWidth);
       lcd.setCursor(5,1);
       lcd.print("    ");
@@ -250,6 +251,7 @@ void loop()
         {
           //pulseWidth = pulseWidth ;//+ trim3;
           currentThrottle = pulseWidth;
+          checkPulseWidth(pulseWidth);
           encoderWrite(2, pulseWidth);
           lcd.setCursor(10,1);
           lcd.print("    ");
@@ -331,6 +333,7 @@ void loop()
 //Yaw
       pulseWidth = map(data.Yaw, 0,255, 1000, 2000);
       pulseWidth = pulseWidth + trim4;
+      checkPulseWidth(pulseWidth);
       encoderWrite(3, pulseWidth);
       lcd.setCursor(15,1);
       lcd.print("    ");
@@ -464,7 +467,7 @@ void loop()
               camTilt = MIN_CHANNEL_PULSE;
             }
         }
-      
+      checkPulseWidth(camTilt);
       encoderWrite(6, camTilt);
       Serial.println(camTilt);
       
