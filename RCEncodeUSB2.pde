@@ -35,6 +35,11 @@ LiquidCrystal lcd(9, 8, 7, 6, 5, 4);//lcd(12, 11, 7, 6, 5, 4);
 #define TRIM_MAX 60
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
+#define Roll     1
+#define Pitch    2
+#define Yaw      3
+#define Throttle 4
+
 bool StateCH5;
 bool StateCH6;
 bool throttleLock;
@@ -134,6 +139,8 @@ void setup()
   joy.init();
 }
 
+
+
 void loop()
 {
 
@@ -154,9 +161,9 @@ void loop()
 
 // Channel order from USB Joystick = ROLL(10bits) PITCH(10bits) YAW(8bits) THROTHLE(8bits)  Hat(4bits) Buttons(13bits)
   
-  for(int i=0; i < NBR_OF_CHANNELS-4; i++)
+  for(int i=0; i < 4; i++)
   {
-    int value = analogRead(i);
+    int value = data.[i];
     int pulseWidth = map(value, 0,1023, 1000, 2000);
     if (i == 0)
     {
