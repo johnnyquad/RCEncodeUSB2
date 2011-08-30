@@ -101,6 +101,20 @@ void showbits(char a,uint8_t l)
   }
 }
 
+void checkPulseWidth(int pulseWidth)
+      {
+        if (pulseWidth > MAX_PULSE_WIDTH)
+        {
+          pulseWidth = MAX_PULSE_WIDTH;
+        }
+      if (pulseWidth < MIN_PULSE_WIDTH)
+        {
+          pulseWidth = MIN_PULSE_WIDTH;
+        }
+        return (pulseWidth);
+      } 
+
+
 void setup()
 {
   lcd.begin(20, 4);
@@ -179,6 +193,7 @@ void loop()
 //Roll
       int pulseWidth = map(data.Roll, 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim1;
+      checkPulseWidth(pulseWidth);
       encoderWrite(0, pulseWidth);
       lcd.setCursor(0,1);
       lcd.print("    ");
