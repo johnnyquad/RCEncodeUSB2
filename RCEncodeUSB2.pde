@@ -335,7 +335,7 @@ void loop()
           Serial.print(" TL=");
           Serial.print(throttleLock);
           Serial.print(" CH5=");
-          Serial.print(StateCH5);
+          Serial.println(StateCH5);
         }
       #endif
 
