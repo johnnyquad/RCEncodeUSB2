@@ -7,7 +7,7 @@
 extern "C"{
 #endif
 
-#define ledTest1 11 //8
+#define ledTest1 3 //8
 #define ledTest2 12 //9
 
 

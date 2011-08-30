@@ -51,8 +51,8 @@ ISR(TIMER1_COMPA_vect) {
            if(Channel > NBR_OF_CHANNELS) {// note that NBR_OF_CHANNELS+1 is the sync pulse
 	     Channel = 0;
              digitalWrite(OutputPin, HIGH); //needed to make the Futaba Trainer string look right
-         digitalWrite(3,HIGH);
-          digitalWrite(3,LOW);		    
+         digitalWrite(ledTest1,HIGH);
+          digitalWrite(ledTest1,LOW);		    
 	   }
    }    
 }
