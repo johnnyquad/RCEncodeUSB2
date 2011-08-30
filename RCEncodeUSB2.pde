@@ -332,7 +332,7 @@ void loop()
       #if defined (printTimes)
         {
           Serial.print(pulseWidth);
-          Serial.print(" ");
+          Serial.println(" ");
         }
       #endif
 
@@ -474,7 +474,7 @@ void loop()
   Serial.print(" IsBtn_5 ");
   Serial.println( (int)data.Btn_5);*/
 #endif
-  delay(20);
+  delay(250);
   
 }
 
