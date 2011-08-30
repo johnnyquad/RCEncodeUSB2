@@ -395,7 +395,7 @@ void loop()
 
    
 //Channel 6 stuff  Arcro/Stable/MagHold
-  if (((data.Btn_6!=1) && (data.Btn_5!=1)) //
+  if ((data.Btn_6!=1) && (data.Btn_5!=1)) //
   {
       if (data.Btn_5 ==1)
       {
