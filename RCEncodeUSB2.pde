@@ -335,42 +335,32 @@ void loop()
           Serial.print(" TL=");
           Serial.print(throttleLock);
           Serial.print(" CH5=");
-          Serial.println(StateCH5);
+          Serial.print(StateCH5);
+          Serial.print(" CH6=");
+          Serial.println(StateCH6);          
         }
       #endif
 
   
-//Channel 5 stuff
-  //int ch5a = digitalRead(22);
+//Channel 5 stuff .... Arming & Disarming
   if (data.Throttle > 242) //Make sure throttle stick is near minimum and only arm if
     {
-      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1)) // All buttons on top of JS are pressed
+      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
         if (data.Btn_1 == 1) // and button 1 is pressed
           {
-            StateCH5 = true;
+            StateCH5 = true; //Arm Motors
           }
     }
  
-   if (data.Throttle > 242) //Make sure throttle stick is near minimum and disarm only if
+   if (data.Throttle > 242) //Make sure throttle stick & currentThrottle is near minimum and disarm only if
     {
-      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1)) // All buttons on top of JS are pressed
+      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
         if (data.Btn_2 == 1) // and button 2 is pressed
           {
-            StateCH5 = false;
+            StateCH5 = false; //Disarm Motors
           }
     }
   
-/*  if (data.Btn_3 == 1)
-  {    
-    StateCH5 = true;
-  }
-
-  if (data.Btn_5 == 1)
-  {    
-    StateCH5 = false;
-  }*/
-
-
   if (StateCH5 == true)
   {
     encoderWrite(4, 2000);
@@ -384,20 +374,19 @@ void loop()
   
   lcd.setCursor(0,3);
   lcd.print(StateCH5);
+
+
    
-//Channel 6 stuff  
-  int ch6a = digitalRead(24);
-  if (ch6a == 0) //active low
+//Channel 6 stuff  Arcro/Stable/MagHold
+  if (data.Btn_5==1) //
   {
     StateCH6 = 0;
   }
-  int ch6b = digitalRead(25);
-  if (ch6b == 0) //active low
+  if (data.Btn_3==1) //
   {
     StateCH6 = 1;
   }
-  int ch6c = digitalRead(26);
-  if (ch6c == 0) //active low
+  if (data.Btn_4==1) //
   {
     StateCH6 = 2;
   }
