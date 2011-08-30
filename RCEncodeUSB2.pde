@@ -468,7 +468,7 @@ void loop()
             }
         }
       checkPulseWidth(camTilt);
-      encoderWrite(6, camTilt);
+      encoderWrite(6, 1500);
       Serial.println(camTilt);
       
       
