@@ -360,8 +360,23 @@ void loop()
         if (data.Btn_2 == 1) // and button 2 is pressed
           {
             StateCH5 = false; //Disarm Motors
+            throttleLock = 0; //turn off throttle lock if it was enabled
           }
     }
+    
+ //Throttle Lock
+  if (data.Btn_11 == 1) //
+  {
+     throttleLock = 0;
+  }  
+  
+  if ((data.Btn_12 == 1) && (StateCH5 == true)) // Only allow throttle lock if motors are armed
+  {
+    throttleLock = 1;
+  }  
+  lcd.setCursor(4,3);
+  lcd.print(throttleLock);
+ loopTime = millis() - currentTime;    
   
   if (StateCH5 == true)
   {
@@ -409,19 +424,7 @@ void loop()
   lcd.print(StateCH6);  
   
 
-  //Throttle Lock
-  if (data.Btn_11 == 1) //
-  {
-     throttleLock = 0;
-  }  
-  
-  if ((data.Btn_12 == 1) && (StateCH5 == true)) // Only allow throttle lock if motors are armed
-  {
-    throttleLock = 1;
-  }  
-  lcd.setCursor(4,3);
-  lcd.print(throttleLock);
- loopTime = millis() - currentTime;
+ 
 //Serial.println(loopTime); 
  
 //  lcd.print(ch6a);
