@@ -199,7 +199,7 @@ void loop()
       
 
 //Pitch
-      pulseWidth = map(data.Pitch, 0,1023, 1000, 2000);
+      pulseWidth = map((1024-data.Pitch), 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim2;
       encoderWrite(1, pulseWidth);
       lcd.setCursor(5,1);
@@ -435,7 +435,7 @@ void loop()
     
   
   
-#if 1  
+#if 0 
   Serial.print((int) data.Roll);
   Serial.print(" ");
   Serial.print((int) data.Pitch);
