@@ -345,7 +345,7 @@ void loop()
 //Channel 5 stuff .... Arming & Disarming
   if (data.Throttle > 242) //Make sure throttle stick is near minimum and only arm if
     {
-      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
+      if ((data.Btn_5 == 1) && (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
         if (data.Btn_1 == 1) // and button 1 is pressed
           {
             StateCH5 = true; //Arm Motors
@@ -356,7 +356,7 @@ void loop()
  
    if (data.Throttle > 242) //Make sure throttle stick & currentThrottle is near minimum and disarm only if
     {
-      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
+      if ((data.Btn_5 == 1) && (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
         if (data.Btn_2 == 1) // and button 2 is pressed
           {
             StateCH5 = false; //Disarm Motors
@@ -395,7 +395,7 @@ void loop()
 
    
 //Channel 6 stuff  Arcro/Stable/MagHold
-  if (!((data.Btn_6==1) && (data.Btn_5==1) && (data.Btn_4==1) && (data.Btn_3==1))) //
+  if (((data.Btn_6!=1) && (data.Btn_5!=1)) //
   {
       if (data.Btn_5 ==1)
       {
