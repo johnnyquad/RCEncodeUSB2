@@ -35,7 +35,7 @@ LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
 #define printTimes
-//#define printTrims
+#define printTrims
 
 
 bool StateCH5;
@@ -163,7 +163,8 @@ void loop()
         Serial.print(" ");
         Serial.print(trim3);
         Serial.print(" ");
-        Serial.println(trim4);
+        Serial.print(trim4);
+        Serial.print(" ")
       }
       #endif
   
