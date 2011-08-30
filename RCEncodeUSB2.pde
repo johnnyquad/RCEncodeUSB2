@@ -332,8 +332,10 @@ void loop()
       #if defined (printTimes)
         {
           Serial.print(pulseWidth);
-          Serial.print(" ");
-          Serial.println(throttleLock);
+          Serial.print(" TL=");
+          Serial.print(throttleLock);
+          Serial.print(" CH5=");
+          Serial.print(StateCH5);
         }
       #endif
 
