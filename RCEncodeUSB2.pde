@@ -442,7 +442,7 @@ void loop()
         {
           tiltTrim = tiltTrim - 5;
         }
-      pulseWidth = cameraTilt + tiltTrim;
+      pulseWidth = camTilt + tiltTrim;
       encoderWrite(6, pulseWidth);
       
       
