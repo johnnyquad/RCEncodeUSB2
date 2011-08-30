@@ -18,7 +18,6 @@
 // Channel order ROLL PITCH THROTHLE YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
 
 #include <Usb.h>
-
 #include "USBJoystick.h"
 #include <LiquidCrystal.h>
 #include "RCEncoder.h"
@@ -35,10 +34,6 @@ LiquidCrystal lcd(9, 8, 7, 6, 5, 4);//lcd(12, 11, 7, 6, 5, 4);
 #define TRIM_MAX 60
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
-#define Roll     1
-#define Pitch    2
-#define Yaw      3
-#define Throttle 4
 
 bool StateCH5;
 bool StateCH6;
@@ -146,29 +141,23 @@ void loop()
 
   joy.run();
   joystick_data data = joy.getJoyStickData();
-  
-  currentTime = millis();
-  int trim1 = analogRead(4); //read trim pots
-  trim1= map(trim1, 0,1023,TRIM_MIN,TRIM_MAX);
-  int trim2 = analogRead(5);
-  trim2= map(trim2, 0,1023,TRIM_MIN,TRIM_MAX);
-  int trim3 = analogRead(6);
-  trim3= map(trim3, 0,1023,1,20);// now used for throttle step TRIM_MIN,TRIM_MAX);
-  int trim4 = analogRead(7);
-  trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
+
+      currentTime = millis();
+      int trim1 = analogRead(4); //read trim pots
+      trim1= map(trim1, 0,1023,TRIM_MIN,TRIM_MAX);
+      int trim2 = analogRead(5);
+      trim2= map(trim2, 0,1023,TRIM_MIN,TRIM_MAX);
+      int trim3 = analogRead(6);
+      trim3= map(trim3, 0,1023,1,20);// now used for throttle step TRIM_MIN,TRIM_MAX);
+      int trim4 = analogRead(7);
+      trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
   
 // Channel order for TX = ROLL(0) PITCH(1) THROTHLE(2) YAW(3) CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
 
 // Channel order from USB Joystick = ROLL(10bits) PITCH(10bits) YAW(8bits) THROTHLE(8bits)  Hat(4bits) Buttons(13bits)
   
-//  for(int i=0; i < 4; i++)
-//  {
-    uint8_t value = (data.Roll);
-    int pulseWidth = map(value, 0,1023, 1000, 2000);
-
-
-//    if (i == 0)
-//    {
+//Roll
+      int pulseWidth = map(data.Roll, 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim1;
       encoderWrite(0, pulseWidth);
       lcd.setCursor(0,1);
@@ -186,11 +175,9 @@ void loop()
         lcd.setCursor(0,2);
         lcd.print(int(trim1));
       }
-//    }
-//    if (i == 1)
-//    {
-      int value = data.Pitch;
-      int pulseWidth = map(value, 0,1023, 1000, 2000);
+
+//Pitch
+      pulseWidth = map(data.Pitch, 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim2;
       encoderWrite(1, pulseWidth);
       lcd.setCursor(5,1);
@@ -208,15 +195,13 @@ void loop()
         lcd.setCursor(5,2);
         lcd.print(int(trim2));
       }
-//    }
-//    if (i == 2)//THROTTLE
-//    {
-      int value = data.Throttle;
-      int pulseWidth = map(value, 0,255, 1000, 2000);
+
+//THROTTLE
+      pulseWidth = map((255-data.Throttle), 0,255, 1000, 2000);
 
       if(throttleLock == 0)// no locking just use stick input
       {
-        pulseWidth = pulseWidth ;//+ trim3;
+        //pulseWidth = pulseWidth ;//+ trim3;
         currentThrottle = pulseWidth;
         encoderWrite(2, pulseWidth);
         lcd.setCursor(10,1);
@@ -241,7 +226,7 @@ void loop()
 
       if (currentTime > throttleTime) // do throt inc/dec
       {
-        if (digitalRead(29) == 0)//active low
+        if (data.Btn_1 == 1)//
         {
           currentThrottle = currentThrottle + trim3;
           if (currentThrottle > MAX_CHANNEL_PULSE)
@@ -250,7 +235,7 @@ void loop()
           }          
           tone(TONE_PIN,2090,1);//2038 res
         }
-        if (digitalRead(30) == 0)//active low
+        if (data.Btn_2 == 1)//
         {
           currentThrottle = currentThrottle - trim3;
           if (currentThrottle < MIN_CHANNEL_PULSE)
@@ -281,12 +266,9 @@ void loop()
         }
       encoderWrite(2,currentThrottle);   
       } 
-//     } 
-    
-//    if (i == 3)
-//    {
-      int value = data.Yaw;
-      int pulseWidth = map(value, 0,255, 1000, 2000);
+
+//Yaw
+      pulseWidth = map(data.Yaw, 0,255, 1000, 2000);
       pulseWidth = pulseWidth + trim4;
       encoderWrite(3, pulseWidth);
       lcd.setCursor(15,1);
@@ -304,18 +286,16 @@ void loop()
         lcd.setCursor(15,2);
         lcd.print(int(trim4));
       }
-//    }
-    
-//  }
+
   
 //Channel 5 stuff
-  int ch5a = digitalRead(22);
-  if (ch5a == 0)
+  //int ch5a = digitalRead(22);
+  if (data.Btn_3 == 1)
   {    
     StateCH5 = true;
   }
-  int ch5b = digitalRead(23);
-  if (ch5b == 0)
+  //int ch5b = digitalRead(23);
+  if (data.Btn_5 == 1)
   {    
     StateCH5 = false;
   }
@@ -366,16 +346,16 @@ void loop()
   lcd.print(StateCH6);  
   
 
-  int tl0 = digitalRead(27);//TL zero = Throttle lock off
-  if (tl0 == 0) //active low
+  //int tl0 = digitalRead(27);//TL zero = Throttle lock off
+  if (data.Btn_12 == 1) //
   {
     if (throttleLock == 1)
     {
       throttleLock = 0;
     }
   }  
-  int tl1 = digitalRead(28);//TL one = Throttle lock on
-  if (tl1 == 0) //active low
+  //int tl1 = digitalRead(28);//TL one = Throttle lock on
+  if (data.Btn_11 == 1) //
   {
     if (throttleLock == 0)
     {
