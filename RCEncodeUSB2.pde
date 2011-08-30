@@ -412,18 +412,12 @@ void loop()
   //Throttle Lock
   if (data.Btn_11 == 1) //
   {
-    if (throttleLock == 1)
-    {
-      throttleLock = 0;
-    }
+     throttleLock = 0;
   }  
   
-  if ((data.Btn_12 == 1) && (StateCH5 = true)) // Only allow throttle lock if motors are armed
+  if ((data.Btn_12 == 1) && (StateCH5 == true)) // Only allow throttle lock if motors are armed
   {
-    if (throttleLock == 0)
-    {
-      throttleLock = 1;
-    }
+    throttleLock = 1;
   }  
   lcd.setCursor(4,3);
   lcd.print(throttleLock);
