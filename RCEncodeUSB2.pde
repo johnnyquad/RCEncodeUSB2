@@ -34,6 +34,9 @@ LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
 #define TRIM_MAX 60
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
+#define printTimes 0
+#define printTrims 1
+
 
 bool StateCH5;
 bool StateCH6;
@@ -151,6 +154,18 @@ void loop()
       trim3= map(trim3, 0,1023,1,20);// now used for throttle step TRIM_MIN,TRIM_MAX);
       int trim4 = analogRead(7);
       trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
+      
+      #if defined (printTrims)
+      {
+        Serial.print(trim1);
+        Serial.print(" ");
+        Serial.print(trim2);
+        Serial.print(" ");
+        Serial.print(trim3);
+        Serial.print(" ");
+        Serial.println(trim4);
+      }
+      #endif
   
 // Channel order for TX = ROLL(0) PITCH(1) THROTHLE(2) YAW(3) CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
 
@@ -175,6 +190,13 @@ void loop()
         lcd.setCursor(0,2);
         lcd.print(int(trim1));
       }
+      #if defined (printTimes)
+        {
+          Serial.print(pulseWidth);
+          Serial.print(" ");
+        }
+      #endif  
+      
 
 //Pitch
       pulseWidth = map(data.Pitch, 0,1023, 1000, 2000);
@@ -195,6 +217,13 @@ void loop()
         lcd.setCursor(5,2);
         lcd.print(int(trim2));
       }
+      
+      #if defined (printTimes)
+        {
+          Serial.print(pulseWidth);
+          Serial.print(" ");
+        }
+      #endif
 
 //THROTTLE
       pulseWidth = map((255-data.Throttle), 0,255, 1000, 2000);
@@ -219,6 +248,14 @@ void loop()
           lcd.setCursor(10,2);
           lcd.print(int(trim3));
         }
+        
+        #if defined (printTimes)
+        {
+          Serial.print(pulseWidth);
+          Serial.print(" ");
+        }
+      #endif
+        
       }
       
       if(throttleLock == 1) //lock throttle and use trigger & thumb button to inc/dec throttle
@@ -264,7 +301,13 @@ void loop()
           lcd.setCursor(10,2);
           lcd.print(int(trim3));
         }
-      encoderWrite(2,currentThrottle);   
+      encoderWrite(2,currentThrottle); 
+          #if defined (printTimes)
+            {
+              Serial.print(pulseWidth);
+              Serial.print(" ");
+            }
+          #endif  
       } 
 
 //Yaw
@@ -286,6 +329,12 @@ void loop()
         lcd.setCursor(15,2);
         lcd.print(int(trim4));
       }
+      #if defined (printTimes)
+        {
+          Serial.print(pulseWidth);
+          Serial.print(" ");
+        }
+      #endif
 
   
 //Channel 5 stuff
