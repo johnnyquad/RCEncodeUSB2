@@ -96,10 +96,34 @@ void loop()
   Serial.print((int) data.Throttle);
   Serial.print(" ");
   showbits(data.Hat,4);
-  Serial.print(" IsHatWest ");
+  Serial.print(" ");
+  Serial.print( (int)data.Hat == HatCentre);
+  Serial.print( (int)data.Hat == HatN);
+  Serial.print( (int)data.Hat == HatNE);
+  Serial.print( (int)data.Hat == HatE);
+  Serial.print( (int)data.Hat == HatSE);
+  Serial.print( (int)data.Hat == HatS);
+  Serial.print( (int)data.Hat == HatSW);
+  Serial.print( (int)data.Hat == HatW);
+  Serial.print( (int)data.Hat == HatNW);
+  Serial.print(" "); 
+  Serial.print( (int)data.Btn_1);
+  Serial.print( (int)data.Btn_2);
+  Serial.print( (int)data.Btn_3);
+  Serial.print( (int)data.Btn_4);
+  Serial.print( (int)data.Btn_5);
+  Serial.print( (int)data.Btn_6);
+  Serial.print( (int)data.Btn_7);
+  Serial.print( (int)data.Btn_8);
+  Serial.print( (int)data.Btn_9);
+  Serial.print( (int)data.Btn_10);
+  Serial.print( (int)data.Btn_11);
+  Serial.println( (int)data.Btn_12);
+
+  /*Serial.print(" IsHatWest ");
   Serial.print( (int)data.Hat == HatW);
   Serial.print(" IsBtn_5 ");
-  Serial.println( (int)data.Btn_5);
+  Serial.println( (int)data.Btn_5);*/
 #endif
   delay(20);
   
