@@ -395,19 +395,21 @@ void loop()
 
    
 //Channel 6 stuff  Arcro/Stable/MagHold
-  if (data.Btn_5==1) //
+  if (!((data.Btn_6==1) && (data.Btn_5==1) && (data.Btn_4==1) && (data.Btn_3==1))) //
   {
-    StateCH6 = 0;
+      if (data.Btn_5 ==1)
+      {
+        StateCH6 = 0;
+      }
+      if (data.Btn_3==1) //
+      {
+        StateCH6 = 1;
+      }
+      if (data.Btn_4==1) //
+      {
+        StateCH6 = 2;
+      }
   }
-  if (data.Btn_3==1) //
-  {
-    StateCH6 = 1;
-  }
-  if (data.Btn_4==1) //
-  {
-    StateCH6 = 2;
-  }
-  
   if (StateCH6 == 0)
   {
     encoderWrite(5, 1000);
