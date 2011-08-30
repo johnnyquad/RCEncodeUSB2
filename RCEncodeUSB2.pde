@@ -437,10 +437,18 @@ void loop()
        if (data.Hat == HatN)
         {
           tiltTrim = tiltTrim + 5;
+          if (tiltTrim > MAX_CHANNEL_PULSE)
+            {
+              tiltTrim = MAX_CHANNEL_PULSE;
+            }
         }
         if (data.Hat == HatS)
         {
           tiltTrim = tiltTrim - 5;
+          if (tiltTrim < MIN_CHANNEL_PULSE)
+            {
+              tiltTrim = MIN_CHANNEL_PULSE;
+            }
         }
       pulseWidth = camTilt + tiltTrim;
       encoderWrite(6, pulseWidth);
