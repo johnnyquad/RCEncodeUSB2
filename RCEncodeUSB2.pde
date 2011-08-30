@@ -164,7 +164,7 @@ void loop()
         Serial.print(trim3);
         Serial.print(" ");
         Serial.print(trim4);
-        Serial.print(" ")
+        Serial.print(" ");
       }
       #endif
   
