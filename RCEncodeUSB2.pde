@@ -26,7 +26,7 @@
 USBJoystick joy;
 
 // LiquidCrystal(rs, enable, d4, d5, d6, d7)
-LiquidCrystal lcd(9, 8, 7, 6, 5, 4);//lcd(12, 11, 7, 6, 5, 4);
+LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
 
 #define OUTPUT_PIN 2
 #define TONE_PIN 3
@@ -111,11 +111,11 @@ void setup()
   delay(300);
   lcd.clear();
   
-  for(int i=22; i < 41; i++) //setup 22 ~ 40 as IP
+/*  for(int i=22; i < 41; i++) //setup 22 ~ 40 as IP
   {
     pinMode(i,INPUT);
     digitalWrite(i, HIGH); //turn on pullup resistors
-  }
+  }*/
 
   StateCH5 = 0;
   StateCH6 = 0;
