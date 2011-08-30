@@ -128,7 +128,7 @@ void setup()
   throttleLock = 0;
   beepOnce = 0;
   camTilt = 1500;
-  tiltTrim = 0;
+  tiltTrim = 2;
 
   
     
