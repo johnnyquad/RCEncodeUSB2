@@ -48,6 +48,8 @@ unsigned long loopTime;
 unsigned long throttleTime;
 int currentThrottle;
 int tiltTrim;
+int  camTilt;
+
 
 
 // Here we define some callbacks thgat will be called when a stick, button
