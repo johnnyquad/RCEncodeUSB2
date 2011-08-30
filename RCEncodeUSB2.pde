@@ -163,7 +163,7 @@ void loop()
   
 //  for(int i=0; i < 4; i++)
 //  {
-    int value = data.Roll;
+    uint8_t value = (data.Roll);
     int pulseWidth = map(value, 0,1023, 1000, 2000);
 
 
