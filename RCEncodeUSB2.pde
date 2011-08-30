@@ -34,7 +34,7 @@ LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
 #define TRIM_MAX 60
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
-//#define printTimes
+#define printTimes
 //#define printTrims
 
 
@@ -200,7 +200,7 @@ void loop()
       
 
 //Pitch
-      pulseWidth = map((1024-data.Pitch), 0,1023, 1000, 2000);
+      pulseWidth = map((1023-data.Pitch), 0,1023, 1000, 2000);
       pulseWidth = pulseWidth + trim2;
       encoderWrite(1, pulseWidth);
       lcd.setCursor(5,1);
@@ -342,15 +342,35 @@ void loop()
   
 //Channel 5 stuff
   //int ch5a = digitalRead(22);
-  if (data.Btn_3 == 1)
+  if (data.Throttle > 242) //Make sure throttle stick is near minimum and only arm if
+    {
+      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1)) // All buttons on top of JS are pressed
+        if (data.Btn_1 == 1) // and button 1 is pressed
+          {
+            StateCH5 = true;
+          }
+    }
+ 
+   if (data.Throttle > 242) //Make sure throttle stick is near minimum and disarm only if
+    {
+      if ((data.Btn_3==1) && (data.Btn_4 == 1) && (data.Btn_5 == 1) && (data.Btn_6 == 1)) // All buttons on top of JS are pressed
+        if (data.Btn_2 == 1) // and button 2 is pressed
+          {
+            StateCH5 = false;
+          }
+    }
+  
+/*  if (data.Btn_3 == 1)
   {    
     StateCH5 = true;
   }
-  //int ch5b = digitalRead(23);
+
   if (data.Btn_5 == 1)
   {    
     StateCH5 = false;
-  }
+  }*/
+
+
   if (StateCH5 == true)
   {
     encoderWrite(4, 2000);
@@ -438,7 +458,7 @@ void loop()
     
   
   
-#if 1
+#if 0
   Serial.print((int) data.Roll);
   Serial.print(" ");
   Serial.print((int) data.Pitch);
