@@ -34,8 +34,8 @@ LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
 #define TRIM_MAX 60
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
-#define printTimes
-#define printTrims
+//#define printTimes
+//#define printTrims
 
 
 bool StateCH5;
@@ -146,13 +146,13 @@ void loop()
   joystick_data data = joy.getJoyStickData();
 
       currentTime = millis();
-      int trim1 = analogRead(4); //read trim pots
+      int trim1 = analogRead(0); //read trim pots ROLL
       trim1= map(trim1, 0,1023,TRIM_MIN,TRIM_MAX);
-      int trim2 = analogRead(5);
+      int trim2 = analogRead(1); //PITCH
       trim2= map(trim2, 0,1023,TRIM_MIN,TRIM_MAX);
-      int trim3 = analogRead(6);
+      int trim3 = analogRead(2); //THROTTLE
       trim3= map(trim3, 0,1023,1,20);// now used for throttle step TRIM_MIN,TRIM_MAX);
-      int trim4 = analogRead(7);
+      int trim4 = analogRead(3); //YAW
       trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
       
       #if defined (printTrims)
@@ -228,36 +228,35 @@ void loop()
 
 //THROTTLE
       pulseWidth = map((255-data.Throttle), 0,255, 1000, 2000);
-
       if(throttleLock == 0)// no locking just use stick input
-      {
-        //pulseWidth = pulseWidth ;//+ trim3;
-        currentThrottle = pulseWidth;
-        encoderWrite(2, pulseWidth);
-        lcd.setCursor(10,1);
-        lcd.print("    ");
-        lcd.setCursor(10,1);
-        lcd.print(pulseWidth);
-        lcd.setCursor(10,2);
-        lcd.print("    ");
-        if (trim3 >= 0)
         {
-          lcd.setCursor(11,2);
-          lcd.print(int(trim3));
-        }else
-        {
+          //pulseWidth = pulseWidth ;//+ trim3;
+          currentThrottle = pulseWidth;
+          encoderWrite(2, pulseWidth);
+          lcd.setCursor(10,1);
+          lcd.print("    ");
+          lcd.setCursor(10,1);
+          lcd.print(pulseWidth);
           lcd.setCursor(10,2);
-          lcd.print(int(trim3));
+          lcd.print("    ");
+          if (trim3 >= 0)
+            {
+              lcd.setCursor(11,2);
+              lcd.print(int(trim3));
+            }else
+            {
+              lcd.setCursor(10,2);
+              lcd.print(int(trim3));
+            }
+          
+          #if defined (printTimes)
+          {
+            Serial.print(pulseWidth);
+            Serial.print(" ");
+          }
+        #endif
+          
         }
-        
-        #if defined (printTimes)
-        {
-          Serial.print(pulseWidth);
-          Serial.print(" ");
-        }
-      #endif
-        
-      }
       
       if(throttleLock == 1) //lock throttle and use trigger & thumb button to inc/dec throttle
       {
@@ -439,7 +438,7 @@ void loop()
     
   
   
-#if 0 
+#if 1
   Serial.print((int) data.Roll);
   Serial.print(" ");
   Serial.print((int) data.Pitch);
