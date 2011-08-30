@@ -304,7 +304,7 @@ void loop()
       encoderWrite(2,currentThrottle); 
           #if defined (printTimes)
             {
-              Serial.print(pulseWidth);
+              Serial.print(currentThrottle);
               Serial.print(" ");
             }
           #endif  
@@ -397,7 +397,7 @@ void loop()
   
 
   //int tl0 = digitalRead(27);//TL zero = Throttle lock off
-  if (data.Btn_12 == 1) //
+  if (data.Btn_11 == 1) //
   {
     if (throttleLock == 1)
     {
@@ -405,7 +405,7 @@ void loop()
     }
   }  
   //int tl1 = digitalRead(28);//TL one = Throttle lock on
-  if (data.Btn_11 == 1) //
+  if (data.Btn_12 == 1) //
   {
     if (throttleLock == 0)
     {
