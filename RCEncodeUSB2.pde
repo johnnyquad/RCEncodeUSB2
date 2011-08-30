@@ -474,7 +474,7 @@ void loop()
   Serial.print(" IsBtn_5 ");
   Serial.println( (int)data.Btn_5);*/
 #endif
-  delay(250);
+  delay(20);
   
 }
 
