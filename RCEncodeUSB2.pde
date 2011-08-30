@@ -39,7 +39,7 @@ LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
 
 
 bool StateCH5;
-bool StateCH6;
+int StateCH6;
 bool throttleLock;
 bool beepOnce;
 unsigned long currentTime; //in uS
