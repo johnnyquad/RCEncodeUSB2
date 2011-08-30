@@ -418,7 +418,7 @@ void loop()
     }
   }  
   
-  if (data.Btn_12 == 1) //
+  if ((data.Btn_12 == 1) && (StateCH5 = true)) // Only allow throttle lock if motors are armed
   {
     if (throttleLock == 0)
     {
