@@ -547,13 +547,13 @@ void loop()
         {
           beepEnable = false;
           lcd.setCursor(19,2);
-          lcd.print("B"); 
+          lcd.print(" "); 
         }
         else
         {
           beepEnable = true;
           lcd.setCursor(19,2);
-          lcd.print(" "); 
+          lcd.print("B"); 
         }
       }
      beepEnablePrevious = data.Btn_7; 
