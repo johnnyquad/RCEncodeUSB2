@@ -511,11 +511,11 @@ void loop()
       if (data.Btn_7 ==1)
       {
         {
-          beepEnable = 0;
+          beepEnable = false;
         }
         if (data.Btn_8==1) //
         {
-          beepEnable = 1;
+          beepEnable = true;
         }
       }
 
