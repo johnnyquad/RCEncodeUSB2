@@ -497,8 +497,10 @@ void loop()
       lcd.print(camTilt); 
       encoderWrite(6, camTilt);
       Serial.print(" ");
-      Serial.print(beepEnable);
-      Serial.println(camTilt);
+      Serial.print(camTilt);
+      Serial.print(" ");
+      Serial.println(beepEnable);
+      
       
       
  
