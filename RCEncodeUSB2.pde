@@ -295,7 +295,7 @@ void loop()
           {
             currentThrottle = MAX_CHANNEL_PULSE;
           }          
-          tone(TONE_PIN,2090,1);//2038 res
+          tone(TONE_PIN,4200,1);//4200 res
         }
         if (data.Btn_2 == 1)//
         {
