@@ -142,7 +142,7 @@ void setup()
   }*/
 
   StateCH5 = 0;
-  StateCH6 = 0;
+  StateCH6 = 1;
   throttleLock = 0;
   beepOnce = 0;
   camTilt = 1500;
@@ -474,6 +474,17 @@ void loop()
               camTilt = MIN_CHANNEL_PULSE;
             }
         }
+
+        if (data.Hat == HatW)
+        {
+          camTilt = 1500;
+        }
+        if (data.Hat == HatE)
+        {
+          camTilt = 1800;
+        }        
+
+
       //checkPulseWidth(camTilt);
       lcd.setCursor(16,3);
       lcd.print(camTilt); 
