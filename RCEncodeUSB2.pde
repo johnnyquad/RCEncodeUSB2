@@ -26,7 +26,7 @@
 USBJoystick joy;
 
 // LiquidCrystal(rs, enable, d4, d5, d6, d7)
-LiquidCrystal lcd(22, 23, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
+LiquidCrystal lcd(24, 22, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 
 #define OUTPUT_PIN 2
 #define TONE_PIN 3
