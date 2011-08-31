@@ -30,8 +30,8 @@ LiquidCrystal lcd(24, 22, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 
 #define OUTPUT_PIN 2
 #define TONE_PIN 3
-#define TRIM_MIN -30
-#define TRIM_MAX 30
+#define TRIM_MIN -20
+#define TRIM_MAX 20
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
 #define printTimes
@@ -129,6 +129,11 @@ void setup()
   lcd.print("  RCEncoderUSB  ");  
   delay(1000);
   lcd.clear();
+  
+  lcd.setCursor(0,0); 
+  lcd.print("ROLL PITH THROT YAW ");
+  lcd.setCursor(0,3); 
+  lcd.print("Arm=  C6=  TL=      ");  //Arm= 4,3 CH6= 9,3  TL=14,3
   
 /*  for(int i=22; i < 41; i++) //setup 22 ~ 40 as IP
   {
@@ -398,7 +403,7 @@ void loop()
   {
     throttleLock = 1;
   }  
-  lcd.setCursor(4,3);
+  lcd.setCursor(14,3);
   lcd.print(throttleLock);
  loopTime = millis() - currentTime;    
   
@@ -410,10 +415,9 @@ void loop()
     encoderWrite(4, 1000);
   }
   
-  lcd.setCursor(0,0); 
-  lcd.print("ROLL PITH THROT YAW ");
+
   
-  lcd.setCursor(0,3);
+  lcd.setCursor(4,3);
   lcd.print(StateCH5);
 
 
@@ -446,7 +450,7 @@ void loop()
   {
     encoderWrite(5, 2000);
   }
-  lcd.setCursor(2,3);
+  lcd.setCursor(9,3);
   lcd.print(StateCH6);  
   
 
@@ -468,6 +472,8 @@ void loop()
             }
         }
       //checkPulseWidth(camTilt);
+      lcd.setCursor(16,3);
+      lcd.print(camTilt); 
       encoderWrite(6, camTilt);
       Serial.println(camTilt);
       
