@@ -295,7 +295,7 @@ void loop()
           {
             currentThrottle = MAX_CHANNEL_PULSE;
           }          
-          tone(TONE_PIN,1920,4);//4200 res
+          tone(TONE_PIN,1920,15);//4200 res
         }
         if (data.Btn_2 == 1)//
         {
@@ -304,7 +304,7 @@ void loop()
           {
             currentThrottle = MIN_CHANNEL_PULSE;
           }
-          tone(TONE_PIN,1920,4);
+          tone(TONE_PIN,1920,10);
         }
           
         throttleTime = currentTime + THROTTLELOOPTIME;
