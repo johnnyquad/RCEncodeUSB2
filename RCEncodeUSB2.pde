@@ -29,7 +29,7 @@ USBJoystick joy;
 LiquidCrystal lcd(24, 22, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 
 #define OUTPUT_PIN 2
-#define TONE_PIN 3
+#define TONE_PIN 31
 #define TRIM_MIN -20
 #define TRIM_MAX 20
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
