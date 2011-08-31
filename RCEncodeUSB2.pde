@@ -438,6 +438,12 @@ void loop()
         StateCH6 = 2;
       }
   }
+  
+     if (data.Btn_5 ==1) //above test fails for Btn_5 so do it here
+      {
+        StateCH6 = 0;
+      }
+  
   if (StateCH6 == 0)
   {
     encoderWrite(5, 1000);
