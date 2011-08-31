@@ -511,7 +511,6 @@ void loop()
 
 //Beep Enable
       if (data.Btn_7 ==1)
-      {
         {
           beepEnable = false;
         }
@@ -519,7 +518,7 @@ void loop()
         {
           beepEnable = true;
         }
-      }
+      
 
 
  
