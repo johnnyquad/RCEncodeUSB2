@@ -43,6 +43,7 @@ int StateCH6;
 bool throttleLock;
 bool beepOnce;
 bool beepEnable;
+bool beepEnablePrevious;
 bool togle9;
 bool togle9Previous;
 unsigned long currentTime; //in uS
@@ -538,15 +539,20 @@ void loop()
 //Serial.println(loopTime); 
 
 
-//Beep Enable
-      if (data.Btn_7 ==1)
+   
+//Beep Enable togle using button 7
+      if ((data.Btn_7 ==0) && (beepEnablePrevious == 1)) // gone from HIGH to LOW
+      {
+        if (beepEnable == true)
         {
           beepEnable = false;
         }
-        if (data.Btn_8==1) //
+        else
         {
           beepEnable = true;
         }
+      }
+     beepEnablePrevious = data.Btn_7; 
       
 
 
