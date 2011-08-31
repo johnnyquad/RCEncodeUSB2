@@ -44,6 +44,7 @@ bool throttleLock;
 bool beepOnce;
 bool beepEnable;
 bool togle9;
+bool togle9Previous;
 unsigned long currentTime; //in uS
 unsigned long lastTime;
 unsigned long loopTime;
@@ -424,11 +425,20 @@ void loop()
     }
   
 
-//latch toggle
-  if ((data.Btn_9 ==1) && togle9 == 1)
-    { 
-      togle9 = false;
+//latch toggle togle9 togle9Previous
+  if ((data.Btn_9 ==0) && (togle9Previous == 1)) // gone from HIGH to LOW
+    {
+      if (togle9 == HIGH)
+        {
+          togle9 = LOW;
+        }
+      else
+        {
+          togle9 = HIGH;
+        }  
     }
+   togle9Previous = data.Btn_9; 
+  
 
   
   lcd.setCursor(4,3);
@@ -518,7 +528,7 @@ void loop()
       Serial.print(" ");
       Serial.print(camTilt);
       Serial.print(" ");
-      Serial.println(beepEnable);
+      Serial.println(togle9);
       
       
       
