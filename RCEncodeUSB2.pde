@@ -336,7 +336,7 @@ void loop()
       } 
 
 //Yaw
-      pulseWidth = map(data.Yaw, 0,255, 1200, 1800);
+      pulseWidth = map(data.Yaw, 0,255, 1350, 1750);
       pulseWidth = pulseWidth + trim4;
       checkPulseWidth(pulseWidth);
       encoderWrite(3, pulseWidth);
