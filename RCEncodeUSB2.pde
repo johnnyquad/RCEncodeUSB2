@@ -12,10 +12,10 @@
 //USBHoshShield library v1 from and USBJoystick from http://www.open.com.au/mikem/arduino/USBJoystick/
 //must be installed
 
-// Sends a pulse stream on pin 2 proportional to the values of pots connected to the analog pins
+// Sends a pulse stream on pin 2 proportional to the values from ths USB joystick
 //MODDED JDH
 
-// Channel order ROLL PITCH THROTHLE YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
+// Channel order to TX ROLL PITCH THROTHLE YAW CH5(Aux1) CH6(Aux2) CH7(Cam1) CH8(Cam2)
 
 #include <Usb.h>
 #include "USBJoystick.h"
@@ -26,7 +26,7 @@
 USBJoystick joy;
 
 // LiquidCrystal(rs, enable, d4, d5, d6, d7)
-LiquidCrystal lcd(22, 23, 24, 25, 26, 27);//lcd(12, 11, 7, 6, 5, 4);
+LiquidCrystal lcd(22, 23, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 
 #define OUTPUT_PIN 2
 #define TONE_PIN 3
@@ -163,13 +163,13 @@ void loop()
   joystick_data data = joy.getJoyStickData();
 
       currentTime = millis();
-      int trim1 = analogRead(0); //read trim pots ROLL
+      int trim1 = analogRead(8); //read trim pots ROLL
       trim1= map(trim1, 0,1023,TRIM_MIN,TRIM_MAX);
-      int trim2 = analogRead(1); //PITCH
+      int trim2 = analogRead(9); //PITCH
       trim2= map(trim2, 0,1023,TRIM_MIN,TRIM_MAX);
-      int trim3 = analogRead(2); //THROTTLE
+      int trim3 = analogRead(10); //THROTTLE
       trim3= map(trim3, 0,1023,1,20);// now used for throttle step TRIM_MIN,TRIM_MAX);
-      int trim4 = analogRead(3); //YAW
+      int trim4 = analogRead(11); //YAW
       trim4= map(trim4, 0,1023,TRIM_MIN,TRIM_MAX);
       
       #if defined (printTrims)
