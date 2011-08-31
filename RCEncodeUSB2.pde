@@ -404,7 +404,7 @@ void loop()
           {
              if ((beepEnable ==1) && (StateCH5 == true)) //
               {
-                tone(TONE_PIN,4090,300);
+                tone(TONE_PIN,1920,300);
               }
             StateCH5 = false; //Disarm Motors
             throttleLock = 0; //turn off throttle lock if it was enabled
