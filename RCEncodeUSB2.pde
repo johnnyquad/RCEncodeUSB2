@@ -546,10 +546,14 @@ void loop()
         if (beepEnable == true)
         {
           beepEnable = false;
+          lcd.setCursor(19,2);
+          lcd.print("B"); 
         }
         else
         {
           beepEnable = true;
+          lcd.setCursor(19,2);
+          lcd.print(" "); 
         }
       }
      beepEnablePrevious = data.Btn_7; 
