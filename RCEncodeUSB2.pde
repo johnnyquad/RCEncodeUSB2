@@ -36,6 +36,7 @@ LiquidCrystal lcd(24, 22, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 
 //#define printTimes
 //#define printTrims
+//#define printLCD
 
 
 bool StateCH5;
@@ -133,11 +134,18 @@ void setup()
   lcd.print("  RCEncoderUSB  ");  
   delay(1000);
   lcd.clear();
-  
   lcd.setCursor(0,0); 
-  lcd.print("ROLL PITH THROT YAW ");
-  lcd.setCursor(0,3); 
-  lcd.print("Arm=  C6=  TL=      ");  //Arm= 4,3 CH6= 9,3  TL=14,3
+  lcd.print("     NO LCD PRINT   ");
+
+  #if defined (printLCD)
+  {
+    lcd.setCursor(0,0); 
+    lcd.print("ROLL PITH THROT YAW ");
+    lcd.setCursor(0,3); 
+    lcd.print("Arm=  C6=  TL=      ");  //Arm= 4,3 CH6= 9,3  TL=14,3
+  }
+  #endif
+
   
 /*  for(int i=22; i < 41; i++) //setup 22 ~ 40 as IP
   {
@@ -203,6 +211,9 @@ void loop()
       pulseWidth = pulseWidth + trim1;
       checkPulseWidth(pulseWidth);
       encoderWrite(0, pulseWidth);
+
+  #if defined (printLCD)
+  {
       lcd.setCursor(0,1);
       lcd.print("    ");
       lcd.setCursor(0,1);
@@ -218,6 +229,8 @@ void loop()
         lcd.setCursor(0,2);
         lcd.print(int(trim1));
       }
+  }
+  #endif
       #if defined (printTimes)
         {
           Serial.print(pulseWidth);
@@ -231,21 +244,26 @@ void loop()
       pulseWidth = pulseWidth + trim2;
       checkPulseWidth(pulseWidth);
       encoderWrite(1, pulseWidth);
-      lcd.setCursor(5,1);
-      lcd.print("    ");
-      lcd.setCursor(5,1);
-      lcd.print(pulseWidth);
-      lcd.setCursor(5,2);
-      lcd.print("    ");
-      if (trim2 >= 0)
+
+      #if defined (printLCD)
       {
-        lcd.setCursor(6,2);
-        lcd.print(int(trim2));
-      }else
-      {
-        lcd.setCursor(5,2);
-        lcd.print(int(trim2));
+          lcd.setCursor(5,1);
+          lcd.print("    ");
+          lcd.setCursor(5,1);
+          lcd.print(pulseWidth);
+          lcd.setCursor(5,2);
+          lcd.print("    ");
+          if (trim2 >= 0)
+          {
+            lcd.setCursor(6,2);
+            lcd.print(int(trim2));
+          }else
+          {
+            lcd.setCursor(5,2);
+            lcd.print(int(trim2));
+          }
       }
+      #endif
       
       #if defined (printTimes)
         {
@@ -262,28 +280,32 @@ void loop()
           currentThrottle = pulseWidth;
           checkPulseWidth(pulseWidth);
           encoderWrite(2, pulseWidth);
-          lcd.setCursor(10,1);
-          lcd.print("    ");
-          lcd.setCursor(10,1);
-          lcd.print(pulseWidth);
-          lcd.setCursor(10,2);
-          lcd.print("    ");
-          if (trim3 >= 0)
-            {
-              lcd.setCursor(11,2);
-              lcd.print(int(trim3));
-            }else
-            {
-              lcd.setCursor(10,2);
-              lcd.print(int(trim3));
-            }
+
+          #if defined (printLCD)
+          {
+            lcd.setCursor(10,1);
+            lcd.print("    ");
+            lcd.setCursor(10,1);
+            lcd.print(pulseWidth);
+            lcd.setCursor(10,2);
+            lcd.print("    ");
+            if (trim3 >= 0)
+              {
+                lcd.setCursor(11,2);
+                lcd.print(int(trim3));
+              }else
+              {
+                lcd.setCursor(10,2);
+                lcd.print(int(trim3));
+              }
+          }
           
           #if defined (printTimes)
-          {
-            Serial.print(pulseWidth);
-            Serial.print(" ");
-          }
-        #endif
+            {
+              Serial.print(pulseWidth);
+              Serial.print(" ");
+            }
+          #endif
           
         }
       
@@ -320,22 +342,26 @@ void loop()
         throttleTime = currentTime + THROTTLELOOPTIME;
       }
       
-
-        lcd.setCursor(10,1);
-        lcd.print("    ");
-        lcd.setCursor(10,1);
-        lcd.print(currentThrottle);
-        lcd.setCursor(10,2);
-        lcd.print("    ");
-        if (trim3 >= 0)
+        #if defined (printLCD)
         {
-          lcd.setCursor(11,2);
-          lcd.print(int(trim3));
-        }else
-        {
+          lcd.setCursor(10,1);
+          lcd.print("    ");
+          lcd.setCursor(10,1);
+          lcd.print(currentThrottle);
           lcd.setCursor(10,2);
-          lcd.print(int(trim3));
+          lcd.print("    ");
+          if (trim3 >= 0)
+          {
+            lcd.setCursor(11,2);
+            lcd.print(int(trim3));
+          }else
+          {
+            lcd.setCursor(10,2);
+            lcd.print(int(trim3));
+          }
         }
+        #endif
+        
       encoderWrite(2,currentThrottle); 
           #if defined (printTimes)
             {
@@ -350,21 +376,27 @@ void loop()
       pulseWidth = pulseWidth + trim4 ; //
       checkPulseWidth(pulseWidth);
       encoderWrite(3, pulseWidth);
-      lcd.setCursor(15,1);
-      lcd.print("    ");
-      lcd.setCursor(15,1);
-      lcd.print(pulseWidth);
-      lcd.setCursor(15,2);
-      lcd.print("    ");
-      if (trim4 >= 0)
-      {
-        lcd.setCursor(16,2);
-        lcd.print(int(trim4));
-      }else
-      {
-        lcd.setCursor(15,2);
-        lcd.print(int(trim4));
-      }
+
+      #if defined (printLCD)
+        {
+          lcd.setCursor(15,1);
+          lcd.print("    ");
+          lcd.setCursor(15,1);
+          lcd.print(pulseWidth);
+          lcd.setCursor(15,2);
+          lcd.print("    ");
+          if (trim4 >= 0)
+          {
+            lcd.setCursor(16,2);
+            lcd.print(int(trim4));
+          }else
+          {
+            lcd.setCursor(15,2);
+            lcd.print(int(trim4));
+          }
+        }
+      #endif
+      
       #if defined (printTimes)
         {
           Serial.print(pulseWidth);
@@ -375,8 +407,6 @@ void loop()
           Serial.print(" CH6=");
           Serial.print(StateCH6);          
           Serial.print(" CH7=");
-                    
-
         }
       #endif
 
@@ -421,8 +451,13 @@ void loop()
   {
     throttleLock = 1;
   }  
-  lcd.setCursor(14,3);
-  lcd.print(throttleLock);
+
+      #if defined (printLCD)
+        {
+          lcd.setCursor(14,3);
+          lcd.print(throttleLock);
+        }
+      #endif
  loopTime = millis() - currentTime;    
   
   if (StateCH5 == true)
@@ -449,10 +484,12 @@ void loop()
    togle9Previous = data.Btn_9; 
   
 
-  
-  lcd.setCursor(4,3);
-  lcd.print(StateCH5);
-
+    #if defined (printLCD)
+     {  
+        lcd.setCursor(4,3);
+        lcd.print(StateCH5);
+     }
+     #endif
 
    
 //Channel 6 stuff  Arcro/Stable/MagHold
@@ -498,8 +535,15 @@ void loop()
   {
     encoderWrite(5, 1000);
   }
-  lcd.setCursor(9,3);
-  lcd.print(StateCH6);  
+
+      #if defined (printLCD)
+       {
+         lcd.setCursor(9,3);
+         lcd.print(StateCH6);  
+       }
+      #endif 
+      
+
   
 
 //Channel 7 stuff camera pan  control
@@ -531,15 +575,23 @@ void loop()
 
 
       //checkPulseWidth(camTilt);
-      lcd.setCursor(16,3);
-      lcd.print(camTilt); 
+
+      #if defined (printLCD)
+       {
+          lcd.setCursor(16,3);
+          lcd.print(camTilt); 
+       }
+      #endif  
+      
       encoderWrite(6, camTilt);
-      Serial.print(" ");
-      Serial.print(camTilt);
-      Serial.print(" ");
-      Serial.println(togle9);
-      
-      
+      #if defined (printTimes)
+       {
+        Serial.print(" ");
+        Serial.print(camTilt);
+        Serial.print(" ");
+        Serial.println(togle9);
+       }
+      #endif
       
  
 //Channel 8 stuff 
@@ -560,8 +612,12 @@ void loop()
         else
         {
           beepEnable = true;
-          lcd.setCursor(19,2);
-          lcd.print("B"); 
+
+      #if defined (printLCD)
+         {
+            lcd.setCursor(19,2);
+            lcd.print("B"); 
+         }
         }
       }
      beepEnablePrevious = data.Btn_7; 
@@ -627,7 +683,7 @@ void loop()
   Serial.print(" IsBtn_5 ");
   Serial.println( (int)data.Btn_5);*/
 #endif
-  delay(20);
+  delay(10);
   
 }
 
