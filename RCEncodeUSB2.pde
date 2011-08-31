@@ -336,8 +336,8 @@ void loop()
       } 
 
 //Yaw
-      pulseWidth = map(data.Yaw, 0,255, 1350, 1750);
-      pulseWidth = pulseWidth + trim4 - 50; //-50 here as joystick yaw seemed to have an offset
+      pulseWidth = map(data.Yaw, 0,255, 1350, 1650);
+      pulseWidth = pulseWidth + trim4 ; //
       checkPulseWidth(pulseWidth);
       encoderWrite(3, pulseWidth);
       lcd.setCursor(15,1);
