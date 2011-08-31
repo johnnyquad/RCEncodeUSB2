@@ -387,6 +387,10 @@ void loop()
       if (/*(data.Btn_5 == 1) &&*/ (data.Btn_6 == 1) && (currentThrottle < 1040)) // Button 6 of JS are pressed
         if (data.Btn_1 == 1) // and button 1 (fire) is pressed
           {
+             if (beepEnable ==1) //
+              {
+                tone(TONE_PIN,4090,300);
+              }
             StateCH5 = true; //Arm Motors
             throttleLock = 0; //turn off throttle lock if it was enabled
             currentThrottle = 1000; // ensure min throttle
@@ -398,6 +402,10 @@ void loop()
       if (/*(data.Btn_5 == 1) &&*/ (data.Btn_6 == 1) && (currentThrottle < 1040)) // All buttons on top of JS are pressed
         if (data.Btn_2 == 1) // and button 2 (thum) is pressed
           {
+             if (beepEnable ==1) //
+              {
+                tone(TONE_PIN,4090,300);
+              }
             StateCH5 = false; //Disarm Motors
             throttleLock = 0; //turn off throttle lock if it was enabled
           }
