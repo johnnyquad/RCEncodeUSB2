@@ -34,7 +34,7 @@ LiquidCrystal lcd(24, 22, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 #define TRIM_MAX 20
 #define THROTTLELOOPTIME 100 //in mS .. 50ms, 20Hz
 
-#define printTimes
+//#define printTimes
 //#define printTrims
 
 
