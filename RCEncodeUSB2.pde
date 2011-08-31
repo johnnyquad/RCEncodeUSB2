@@ -619,6 +619,7 @@ void loop()
             lcd.setCursor(19,2);
             lcd.print("B"); 
          }
+        #endif 
         }
       }
      beepEnablePrevious = data.Btn_7; 
