@@ -36,7 +36,7 @@ LiquidCrystal lcd(24, 22, 23, 25, 27, 29);//lcd(12, 11, 7, 6, 5, 4);
 
 //#define printTimes
 //#define printTrims
-//#define printLCD
+#define printLCD
 
 
 bool StateCH5;
