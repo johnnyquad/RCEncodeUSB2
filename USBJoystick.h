@@ -182,7 +182,7 @@ enum HatPositions
 /// The current hat position is one of USBJOYSTICK_HAT_POS_*.
 class USBJoystick
 {
-#define USBJOYSTICK_NUM_STICKS          4
+#define USBJOYSTICK_NUM_STICKS          1//4
 #define USBJOYSTICK_NUM_BUTTONS        18 //13
 #define USBJOYSTICK_NUM_HATS            1
 
