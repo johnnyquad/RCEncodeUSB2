@@ -13,7 +13,7 @@ extern "C"{
 
 #define MS_TO_TICKS(_ms)  ((_ms) * 2)  // todo, use macro here
 
-#define NBR_OF_CHANNELS  8
+#define NBR_OF_CHANNELS  6
 #define MIN_CHANNEL_PULSE 1000  // 1ms
 #define MID_CHANNEL_PULSE 1500  // 1.5ms
 #define MAX_CHANNEL_PULSE 2000  // 2 ms
