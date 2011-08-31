@@ -127,7 +127,7 @@ void setup()
   lcd.print("JDH 30/08/2011 V 0.1");
   lcd.setCursor(0,3);
   lcd.print("  RCEncoderUSB  ");  
-  delay(300);
+  delay(1000);
   lcd.clear();
   
 /*  for(int i=22; i < 41; i++) //setup 22 ~ 40 as IP
