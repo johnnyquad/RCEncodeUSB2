@@ -299,7 +299,7 @@ void loop()
             if (beepEnable == 1)
             {
              tone(TONE_PIN,1920,20);
-            {
+            }
         }
         if (data.Btn_2 == 1)//
         {
@@ -311,7 +311,7 @@ void loop()
             if (beepEnable == 1)
             {
              tone(TONE_PIN,1920,20);
-            {
+            }
         }
           
         throttleTime = currentTime + THROTTLELOOPTIME;
