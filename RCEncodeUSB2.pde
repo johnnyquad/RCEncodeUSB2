@@ -488,7 +488,7 @@ void loop()
   
   if (StateCH6 == 0)
   {
-    encoderWrite(5, 1000);
+    encoderWrite(5, 2000);
   }
   if (StateCH6 == 1)
   {
@@ -496,7 +496,7 @@ void loop()
   }
   if (StateCH6 == 2)
   {
-    encoderWrite(5, 2000);
+    encoderWrite(5, 1000);
   }
   lcd.setCursor(9,3);
   lcd.print(StateCH6);  
