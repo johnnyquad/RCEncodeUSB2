@@ -299,6 +299,7 @@ void loop()
                 lcd.print(int(trim3));
               }
           }
+          #endif
           
           #if defined (printTimes)
             {
