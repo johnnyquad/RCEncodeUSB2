@@ -42,6 +42,7 @@ bool StateCH5;
 int StateCH6;
 bool throttleLock;
 bool beepOnce;
+bool beepEnable;
 unsigned long currentTime; //in uS
 unsigned long lastTime;
 unsigned long loopTime;
@@ -295,7 +296,10 @@ void loop()
           {
             currentThrottle = MAX_CHANNEL_PULSE;
           }          
-          tone(TONE_PIN,1920,15);//4200 res
+            if (beepEnable == 1)
+            {
+             tone(TONE_PIN,1920,20);
+            {
         }
         if (data.Btn_2 == 1)//
         {
@@ -304,7 +308,10 @@ void loop()
           {
             currentThrottle = MIN_CHANNEL_PULSE;
           }
-          tone(TONE_PIN,1920,10);
+            if (beepEnable == 1)
+            {
+             tone(TONE_PIN,1920,20);
+            {
         }
           
         throttleTime = currentTime + THROTTLELOOPTIME;
@@ -496,6 +503,19 @@ void loop()
 //Channel 8 stuff 
    encoderWrite(7, 2000);
 //Serial.println(loopTime); 
+
+
+//Beep Enable
+      if (data.Btn_7 ==1)
+      {
+        beepEnable = 0;
+      }
+      if (data.Btn_8==1) //
+      {
+        beepEnable = 1;
+      }
+
+
  
 //  lcd.print(ch6a);
 //  lcd.print(" ");
