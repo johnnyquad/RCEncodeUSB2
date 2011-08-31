@@ -441,27 +441,27 @@ void loop()
 //  {
       if (data.Btn_5 ==1)
       {
-        StateCH6 = 0;
-        if (beepEnable ==1)
+        if ((beepEnable ==1) && !(StateCH6 == 0)) //only beep once
         {
           tone(TONE_PIN,4090,10);
         }
+       StateCH6 = 0; 
       }
       if (data.Btn_3==1) //
       {
-        StateCH6 = 1;
-        if (beepEnable ==1)
+        if ((beepEnable ==1) && !(StateCH6 == 1))
         {
           tone(TONE_PIN,4090,10);
         }      
+        StateCH6 = 1;
       }
       if (data.Btn_4==1) //
       {
-        StateCH6 = 2;
-        if (beepEnable ==1)
+        ((beepEnable ==1) && !(StateCH6 == 2))
         {
           tone(TONE_PIN,4090,10);
         }
+        StateCH6 = 2;
       }
 //  }
   
