@@ -457,7 +457,7 @@ void loop()
       }
       if (data.Btn_4==1) //
       {
-        ((beepEnable ==1) && !(StateCH6 == 2))
+        if ((beepEnable ==1) && !(StateCH6 == 2))
         {
           tone(TONE_PIN,4090,10);
         }
