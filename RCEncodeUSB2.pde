@@ -425,7 +425,7 @@ void loop()
           {
              if ((beepEnable ==1) && (StateCH5 == false)) //
               {
-                tone(TONE_PIN,4090,300);
+                tone(TONE_PIN,1920,300);
               }
             StateCH5 = true; //Arm Motors
             throttleLock = 0; //turn off throttle lock if it was enabled
@@ -440,7 +440,7 @@ void loop()
           {
              if ((beepEnable ==1) && (StateCH5 == true)) //
               {
-                tone(TONE_PIN,1920,300);
+                tone(TONE_PIN,4090,300);
               }
             StateCH5 = false; //Disarm Motors
             throttleLock = 0; //turn off throttle lock if it was enabled
@@ -450,11 +450,19 @@ void loop()
  //Throttle Lock
   if (data.Btn_11 == 1) //
   {
-     throttleLock = 0;
+     if ((beepEnable ==1) && (throttleLock = 1)) //
+      {
+       tone(TONE_PIN,4090,300);
+      }
+    throttleLock = 0;
   }  
   
   if ((data.Btn_12 == 1) && (StateCH5 == true)) // Only allow throttle lock if motors are armed
   {
+     if ((beepEnable ==1) && (throttleLock = 0)) //
+      {
+       tone(TONE_PIN,4090,300);
+      }
     throttleLock = 1;
   }  
 
@@ -611,12 +619,14 @@ void loop()
       {
         if (beepEnable == true)
         {
+          tone(TONE_PIN,4090,10);
           beepEnable = false;
           lcd.setCursor(19,2);
           lcd.print(" "); 
         }
         else
         {
+          tone(TONE_PIN,4090,10);
           beepEnable = true;
 
       #if defined (printLCD)
