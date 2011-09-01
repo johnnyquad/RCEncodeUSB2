@@ -2,7 +2,7 @@
 //
 
 #include "RCEncoder.h"
-#define DEBUG
+//#define DEBUG
 /* variables for Encoder */
 volatile  byte Channel = 0;  // the channel being pulsed
 static byte OutputPin;	 // the digital pin to use
