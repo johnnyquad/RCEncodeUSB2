@@ -374,6 +374,11 @@ void loop()
 
 //Yaw
       pulseWidth = map(data.Yaw, 0,255, 1350, 1650);
+      if (data.Btn_9 == 1)
+        {
+          pulseWidth = map(data.Yaw, 0,255, 1000, 2000);// allow full yaw by holding Button 9
+        }
+      
       pulseWidth = pulseWidth + trim4 ; //
       checkPulseWidth(pulseWidth);
       encoderWrite(3, pulseWidth);
