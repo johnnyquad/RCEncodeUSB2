@@ -26,7 +26,7 @@ ISR(TIMER1_COMPA_vect) {
           digitalWrite(ledTest1,LOW);
           }
      	  digitalWrite(OutputPin, LOW); //change to HIGH for invert was LOW  
-	  OCR1A = Channels[Channel].ticks - MS_TO_TICKS(INTER_CHAN_DELAY) +90;
+	  OCR1A = Channels[Channel].ticks - MS_TO_TICKS(INTER_CHAN_DELAY) +90; //+90 is frig factor !!
           
           pulseState = stateHIGH;
    }
