@@ -450,7 +450,7 @@ void loop()
  //Throttle Lock
   if (data.Btn_11 == 1) //
   {
-     if ((beepEnable ==1) && (throttleLock = 1)) //
+     if ((beepEnable ==1) && (throttleLock == 1)) //
       {
        tone(TONE_PIN,4090,300);
       }
@@ -459,7 +459,7 @@ void loop()
   
   if ((data.Btn_12 == 1) && (StateCH5 == true)) // Only allow throttle lock if motors are armed
   {
-     if ((beepEnable ==1) && (throttleLock = 0)) //
+     if ((beepEnable ==1) && (throttleLock == 0)) //
       {
        tone(TONE_PIN,4090,300);
       }
