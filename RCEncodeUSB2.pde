@@ -452,7 +452,7 @@ void loop()
   {
      if ((beepEnable ==1) && (throttleLock == 1)) //
       {
-       tone(TONE_PIN,4090,300);
+       tone(TONE_PIN,4090,100);
       }
     throttleLock = 0;
   }  
@@ -461,7 +461,7 @@ void loop()
   {
      if ((beepEnable ==1) && (throttleLock == 0)) //
       {
-       tone(TONE_PIN,4090,300);
+       tone(TONE_PIN,4090,100);
       }
     throttleLock = 1;
   }  
